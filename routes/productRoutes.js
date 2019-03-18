@@ -7,6 +7,7 @@ router.get('/category/available/:categoryName', productsController.getActiveCate
 router.get('/category/:categoryName', productsController.getCategoryProducts);
 router.get('/brand/:brandName', productsController.getBrandProducts);
 router.get('/search/:query', productsController.getSearchResults);
+router.get('/sale', productsController.getSaleProducts);
 router.post('/', productsController.addProduct);
 router.get('/:id', productsController.getProduct);
 router.put('/:id', productsController.editProduct);

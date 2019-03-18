@@ -80,6 +80,15 @@ const getSearchResults = async (req, res, next) => {
 	}
 };
 
+const getSaleProducts = async (req, res, next) => {
+	try {
+		const products = await Product.find({ discount: {$gt: 0}, isActive: true });
+		res.json(products);
+	} catch (error) {
+		res.status(404).send({ mesage: 'Products Not found...', error });
+	}
+};
+
 const deleteProduct = async (req, res, next) => {
 	const { id } = req.params;
 	try {
@@ -122,6 +131,7 @@ module.exports = {
 	getActiveCategoryProducts,
 	getBrandProducts,
 	getSearchResults,
+	getSaleProducts,
 	deleteProduct,
 	editProduct,
 	addProduct,
