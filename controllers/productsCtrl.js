@@ -16,14 +16,14 @@ const getProducts = async (req, res, next) => {
 
 			res.json({ products, count });
 		} catch (error) {
-			res.status(500).send({ mesage: 'An error occurs...', error });
+			res.status(500).send({ message: 'An error occurs...', error });
 		}
 	} else {
 		try {
 			const products = await Product.find();
 			res.json(products);
 		} catch (error) {
-			res.status(500).send({ mesage: 'An error occurs...', error });
+			res.status(500).send({ message: 'An error occurs...', error });
 		}
 	}
 };
@@ -35,7 +35,7 @@ const getProduct = async (req, res, next) => {
 		const product = await Product.findById(id);
 		res.json(product);
 	} catch (error) {
-		res.status(404).send({ mesage: 'Product Not found...', error });
+		res.status(404).send({ message: 'Product Not found...', error });
 	}
 };
 
@@ -45,7 +45,7 @@ const getCategoryProducts = async (req, res, next) => {
 		const products = await Product.find({ category: categoryName });
 		res.json(products);
 	} catch (error) {
-		res.status(404).send({ mesage: 'Products Not found...', error });
+		res.status(404).send({ message: 'Products Not found...', error });
 	}
 };
 
@@ -55,7 +55,7 @@ const getActiveCategoryProducts = async (req, res, next) => {
 		const products = await Product.find({ category: categoryName, isActive: true });
 		res.json(products);
 	} catch (error) {
-		res.status(404).send({ mesage: 'Products Not found...', error });
+		res.status(404).send({ message: 'Products Not found...', error });
 	}
 };
 
@@ -65,7 +65,7 @@ const getBrandProducts = async (req, res, next) => {
 		const products = await Product.find({ brand: brandName });
 		res.json(products);
 	} catch (error) {
-		res.status(404).send({ mesage: 'Products Not found...', error });
+		res.status(404).send({ message: 'Products Not found...', error });
 	}
 };
 
@@ -76,16 +76,16 @@ const getSearchResults = async (req, res, next) => {
 		const products = await Product.find({ name: regExp });
 		res.json(products);
 	} catch (error) {
-		res.status(404).send({ mesage: 'Products Not found...', error });
+		res.status(404).send({ message: 'Products Not found...', error });
 	}
 };
 
 const getSaleProducts = async (req, res, next) => {
 	try {
-		const products = await Product.find({ discount: {$gt: 0}, isActive: true });
+		const products = await Product.find({ discount: { $gt: 0 }, isActive: true });
 		res.json(products);
 	} catch (error) {
-		res.status(404).send({ mesage: 'Products Not found...', error });
+		res.status(404).send({ message: 'Products Not found...', error });
 	}
 };
 
@@ -95,7 +95,7 @@ const deleteProduct = async (req, res, next) => {
 		const res = await Product.findByIdAndDelete(id);
 		res.json(res);
 	} catch (error) {
-		res.status(404).send({ mesage: 'Product Not found...', error });
+		res.status(404).send({ message: 'Product Not found...', error });
 	}
 };
 
@@ -108,7 +108,7 @@ const editProduct = async (req, res, next) => {
 		const product = await Product.findByIdAndUpdate(id, updatedValues, { new: true });
 		res.json(product);
 	} catch (error) {
-		res.status(404).send({ mesage: 'Product not updated...', error });
+		res.status(404).send({ message: 'Product not updated...', error });
 	}
 };
 
@@ -120,7 +120,7 @@ const addProduct = async (req, res, next) => {
 		await product.save();
 		res.status(201).json(product);
 	} catch (error) {
-		res.status(400).json({ mesage: 'Product not created... Try again', error });
+		res.status(400).json({ message: 'Product not created... Try again', error });
 	}
 };
 
